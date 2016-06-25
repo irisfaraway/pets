@@ -1,5 +1,6 @@
 class PetsController < ApplicationController
   before_action :set_pet, only: [:show, :edit, :update, :destroy]
+  before_action :update_hunger, only: [:show, :update, :edit]
 
   # GET /pets
   # GET /pets.json
@@ -66,6 +67,13 @@ class PetsController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_pet
     @pet = Pet.find(params[:id])
+  end
+
+  def update_hunger
+    # Check how much time has passed since last fed
+    time_since_last_fed = (DateTime.current.to_f - @pet.last_fed.to_f) / 6000
+    # Add elapsed time to hunger
+    @pet.hunger += time_since_last_fed
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
