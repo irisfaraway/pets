@@ -5,9 +5,9 @@
 <p><strong><%= @pet.name %></strong> loves you.</p>
 
 <p><strong><%= @pet.name %></strong> is
-  <% if @pet.hunger < 0.01 %>
+  <% if @pet.hunger < 0.3 %>
     full.
-  <% elsif @pet.hunger > 0.05 %>
+  <% elsif @pet.hunger > 0.6 %>
     hungry.
   <% else %>
     a bit peckish.
@@ -16,12 +16,14 @@
 
 <%= link_to 'Feed pet', feed_pet_path(@pet), class: 'button success' %>
 
+<p>
+  <%= link_to 'Edit', edit_pet_path(@pet) %> |
+  <%= link_to 'Back', pets_path %>
+</p>
+
 <div class="panel">
   <h3>Pet data for debugging</h3>
   <p>Hunger is <%= @pet.hunger%></p>
   <p>Last fed at <%= @pet.last_fed%></p>
   <p>Currently <%= DateTime.current%></p>
 </div>
-
-<%= link_to 'Edit', edit_pet_path(@pet) %> |
-<%= link_to 'Back', pets_path %>
