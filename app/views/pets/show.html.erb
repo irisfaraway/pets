@@ -2,10 +2,6 @@
 
 <p>You see <strong><%= @pet.name %></strong>.</p>
 
-<% if @pet.user_id == current_user.id %>
-  <p><strong><%= @pet.name %></strong> loves you.</p>
-<% end %>
-
 <p><strong><%= @pet.name %></strong> is
   <% if @pet.hunger < 0.3 %>
     full.
@@ -16,16 +12,22 @@
   <% end %>
 </p>
 
-<%= link_to 'Feed pet', feed_pet_path(@pet), class: 'button success' %>
+<% if @pet.user_id == current_user.id %>
+  <p><strong><%= @pet.name %></strong> loves you.</p>
+<% else %>
+  <p><strong><%= @pet.name %></strong> regards you suspiciously.</p>
+<% end %>
 
-<p>
-  <%= link_to 'Edit', edit_pet_path(@pet) %> |
-  <%= link_to 'Back', pets_path %>
-</p>
-
-<div class="panel">
-  <h3>Pet data for debugging</h3>
-  <p>Hunger is <%= @pet.hunger%></p>
-  <p>Last fed at <%= @pet.last_fed%></p>
-  <p>Currently <%= DateTime.current%></p>
-</div>
+<% if @pet.user_id == current_user.id || current_user.admin? %>
+  <%= link_to 'Feed pet', feed_pet_path(@pet), class: 'button success' %>
+  <%= link_to 'Rename', edit_pet_path(@pet), class: 'button' %>
+  <%= link_to 'Back', pets_path, class: 'button' %>
+<% end %>
+<% if current_user.admin? %>
+  <div class="panel">
+    <h3>Pet data for debugging</h3>
+    <p>Hunger is <%= @pet.hunger%></p>
+    <p>Last fed at <%= @pet.last_fed%></p>
+    <p>Currently <%= DateTime.current%></p>
+  </div>
+<% end %>
