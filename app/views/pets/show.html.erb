@@ -2,10 +2,9 @@
 
 <%= image_tag('pets/pet.png', alt: @pet.name) %>
 
-<p>
-  <strong>Name:</strong>
-  <%= @pet.name %>
-</p>
+<p>You see <strong><%= @pet.name %></strong>.</p>
+
+<p><strong><%= @pet.name %></strong> loves you.</p>
 
 <%= link_to 'Edit', edit_pet_path(@pet) %> |
 <%= link_to 'Back', pets_path %>
