@@ -1,27 +1,4 @@
 class UsersController < ApplicationController
-  # GET /users
-  # GET /users.json
-  def index
-    # Show admins first, then all users in alphabetical order
-    @users = User.all.order('admin DESC, name ASC')
-  end
-
-  # GET /users/1
-  # GET /users/1.json
-  def show
-    @user = User.find(params[:id])
-  end
-
-  # GET /users/new
-  def new
-    @user = User.new
-  end
-
-  # GET /users/1/edit
-  def edit
-    @user = User.find(params[:id])
-  end
-
   # POST /users
   # POST /users.json
   def create

@@ -14,4 +14,10 @@ module SessionsHelper
   def logged_in?
     !current_user.nil?
   end
+
+  # Only let logged-in users see or do things
+  def redirect_if_not_logged_in
+    return if logged_in?
+    redirect_to root_path
+  end
 end
