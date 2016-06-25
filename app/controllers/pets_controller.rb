@@ -74,11 +74,12 @@ class PetsController < ApplicationController
 
   private
 
-  # Use callbacks to share common setup or constraints between actions.
+  # Use callbacks to share common setup or constraints between actions
   def set_pet
     @pet = Pet.find(params[:id])
   end
 
+  # Update how hungry a pet is based on when they were last fed
   def update_hunger
     # Check how much time has passed since last fed
     time_since_last_fed = (DateTime.current.to_f - @pet.last_fed.to_f) / 6000
@@ -91,7 +92,7 @@ class PetsController < ApplicationController
     @pet.update_attribute(:hunger, updated_hunger)
   end
 
-  # Never trust parameters from the scary internet, only allow the white list through.
+  # Never trust parameters from the scary internet, only allow the white list through
   def pet_params
     params.require(:pet).permit(:name,
                                 :last_fed)
