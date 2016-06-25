@@ -1,6 +1,6 @@
 # Pet class
 class Pet < ActiveRecord::Base
-  before_validation :set_initial_hunger, only: [:new, :create]
+  before_validation :set_initial_hunger, on: :create
 
   # Must have a unique name
   validates :name, presence: true,

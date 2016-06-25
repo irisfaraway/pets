@@ -1,6 +1,6 @@
 class PetsController < ApplicationController
   before_action :set_pet, only: [:show, :edit, :update, :destroy]
-  before_action :update_hunger, only: [:show, :update, :edit]
+  before_action :update_hunger, only: [:show]
 
   # GET /pets
   # GET /pets.json
@@ -72,17 +72,16 @@ class PetsController < ApplicationController
   def update_hunger
     # Check how much time has passed since last fed
     time_since_last_fed = (DateTime.current.to_f - @pet.last_fed.to_f) / 6000
-    # Add elapsed time to hunger
-    if time_since_last_fed < 1
-      @pet.hunger += time_since_last_fed
-    else
-      @pet.hunger = 1
-    end
+    # Update hunger based on elapsed time. Max 1, minimum 0
+    @pet.hunger = if time_since_last_fed >= 1
+                    1
+                  else
+                    time_since_last_fed
+                  end
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def pet_params
-    params.require(:pet).permit(:name,
-                                :hunger)
+    params.require(:pet).permit(:name)
   end
 end

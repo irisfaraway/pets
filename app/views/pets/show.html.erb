@@ -4,7 +4,22 @@
 
 <p><strong><%= @pet.name %></strong> loves you.</p>
 
-<p>Hunger is <%= @pet.hunger%>. Last fed at <%= @pet.last_fed%>.</p>
+<p><strong><%= @pet.name %></strong> is
+  <% if @pet.hunger < 0.01 %>
+    full.
+  <% elsif @pet.hunger > 0.05 %>
+    hungry.
+  <% else %>
+    a bit peckish.
+  <% end %>
+</p>
+
+<div class="panel">
+  <h3>Pet data for debugging</h3>
+  <p>Hunger is <%= @pet.hunger%></p>
+  <p>Last fed at <%= @pet.last_fed%></p>
+  <p>Currently <%= DateTime.current%></p>
+</div>
 
 <%= link_to 'Edit', edit_pet_path(@pet) %> |
 <%= link_to 'Back', pets_path %>
