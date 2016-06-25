@@ -15,9 +15,6 @@
       <%= render 'layouts/navigation' %>
     </header>
     <main role="main">
-      <% if logged_in? %>
-        <p>Logged in as <%= @current_user.name %></p>
-      <% end %>
        <%= render 'layouts/messages' %>
        <%= yield %>
     </main>

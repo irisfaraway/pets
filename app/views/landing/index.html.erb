@@ -1,0 +1,22 @@
+<div class="row">
+  <div class="small-12 columns">
+    <h1>Pets</h1>
+  </div>
+</div>
+<% if logged_in? %>
+  <%# Site data for logged-in users %>
+  <div class="row">
+    <div class="small-12 columns">
+      <p>Hi <%= current_user.name %>!</p>
+      <%= link_to 'See my pets', pets_path, class: 'button radius info' %>
+    </div>
+  </div>
+<% else %>
+  <%# Log-in prompt for the un-logged-in %>
+  <div class="row">
+    <div class="small-12 columns">
+      <p>Log in or sign up using your Google account.</p>
+      <a href="/auth/google_oauth2" class="button radius success">Log in or sign up</a>
+    </div>
+  </div>
+<% end %>

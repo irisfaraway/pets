@@ -1,1 +1,6 @@
-<%# add navigation links to this file %>
+<% if logged_in? %>
+  <li><%= link_to 'Pets', pets_path %></li>
+  <li><%= link_to 'Log out', logout_path %></li>
+  <% else %>
+  <li><a href="/auth/google_oauth2">Log in</a></li>
+<% end %>
