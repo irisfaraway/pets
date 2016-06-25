@@ -1,12 +1,13 @@
 class PetsController < ApplicationController
   before_action :redirect_if_not_logged_in
+  before_action :check_editing_permissions, only: [:edit, :update, :destroy, :feed]
   before_action :set_pet, only: [:show, :edit, :update, :destroy, :feed]
   before_action :update_hunger, only: [:show]
 
   # GET /pets
   # GET /pets.json
   def index
-    @pets = Pet.all
+    @pets = Pet.where(user_id: current_user.id)
   end
 
   # GET /pets/1
@@ -78,6 +79,14 @@ class PetsController < ApplicationController
   end
 
   private
+
+  def check_editing_permissions
+    set_pet
+    unless @pet.user.id == current_user.id # || current_user.admin?
+      flash[:warning] = "That's not your pet - leave it alone!"
+      redirect_to(pets_path)
+    end
+  end
 
   # Use callbacks to share common setup or constraints between actions
   def set_pet

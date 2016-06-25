@@ -2,7 +2,9 @@
 
 <p>You see <strong><%= @pet.name %></strong>.</p>
 
-<p><strong><%= @pet.name %></strong> loves you.</p>
+<% if @pet.user_id == current_user.id %>
+  <p><strong><%= @pet.name %></strong> loves you.</p>
+<% end %>
 
 <p><strong><%= @pet.name %></strong> is
   <% if @pet.hunger < 0.3 %>
