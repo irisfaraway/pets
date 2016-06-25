@@ -14,6 +14,8 @@
   <% end %>
 </p>
 
+<%= link_to 'Feed pet', feed_pet_path(@pet), class: 'button success' %>
+
 <div class="panel">
   <h3>Pet data for debugging</h3>
   <p>Hunger is <%= @pet.hunger%></p>

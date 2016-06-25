@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
-  resources :pets
   root 'pets#index'
+
+  resources :pets do
+    member do
+      get 'feed'
+    end
+  end
 end
