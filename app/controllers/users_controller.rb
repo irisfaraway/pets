@@ -1,4 +1,32 @@
 class UsersController < ApplicationController
+  before_action :redirect_if_not_logged_in
+  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  # Must be logged in to do anything user-related
+
+  # GET /users
+  # GET /users.json
+  def index
+    # Show admins first, then all users in alphabetical order
+    @users = User.all.order('admin DESC, name ASC')
+  end
+
+  # GET /users/1
+  # GET /users/1.json
+  def show
+    @user = User.find(params[:id])
+    @books = @user.books
+  end
+
+  # GET /users/new
+  def new
+    @user = User.new
+  end
+
+  # GET /users/1/edit
+  def edit
+    @user = User.find(params[:id])
+  end
+
   # POST /users
   # POST /users.json
   def create

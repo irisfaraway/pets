@@ -16,7 +16,11 @@ class PetsController < ApplicationController
 
   # GET /pets/new
   def new
-    @pet = Pet.new
+    if current_user.pet.nil?
+      @pet = Pet.new
+    else
+      redirect_to pets_url, notice: 'You already have a pet.'
+    end
   end
 
   # GET /pets/1/edit
@@ -27,7 +31,7 @@ class PetsController < ApplicationController
   # POST /pets.json
   def create
     @pet = Pet.new(pet_params)
-
+    @pet.user_id = current_user.id
     respond_to do |format|
       if @pet.save
         format.html { redirect_to @pet, notice: 'Pet was successfully created.' }

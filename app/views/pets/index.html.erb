@@ -20,6 +20,6 @@
   </tbody>
 </table>
 
-<br>
-
-<%= link_to 'New Pet', new_pet_path %>
+<% if current_user.pet.nil? %>
+  <%= link_to 'New Pet', new_pet_path %>
+<% end %>

@@ -1,5 +1,7 @@
 # Pet class
 class Pet < ActiveRecord::Base
+  belongs_to :user
+
   before_validation :set_initial_hunger, on: :create
 
   # Must have a unique name
