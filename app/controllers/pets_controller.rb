@@ -83,11 +83,12 @@ class PetsController < ApplicationController
     # Check how much time has passed since last fed
     time_since_last_fed = (DateTime.current.to_f - @pet.last_fed.to_f) / 6000
     # Update hunger based on elapsed time, max 1
-    @pet.hunger = if time_since_last_fed >= 1
-                    1
-                  else
-                    time_since_last_fed
-                  end
+    updated_hunger = if time_since_last_fed >= 1
+                       1
+                     else
+                       time_since_last_fed
+                     end
+    @pet.update_attribute(:hunger, updated_hunger)
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.

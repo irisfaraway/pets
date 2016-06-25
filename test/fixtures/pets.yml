@@ -19,3 +19,8 @@ destroy_pet:
   name: Eggy
   hunger: 0
   last_fed: 2016-01-01 00:00:00
+
+feed_pet:
+  name: Kiki
+  hunger: 1
+  last_fed: 2016-01-01 00:00:00

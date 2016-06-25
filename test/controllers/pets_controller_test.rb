@@ -7,6 +7,7 @@ class PetsControllerTest < ActionController::TestCase
     @edit_pet = pets(:edit_pet)
     @update_pet = pets(:update_pet)
     @destroy_pet = pets(:destroy_pet)
+    @feed_pet = pets(:feed_pet)
   end
 
   test 'should get index' do
@@ -49,5 +50,11 @@ class PetsControllerTest < ActionController::TestCase
     end
 
     assert_redirected_to pets_path
+  end
+
+  test 'should feed pet' do
+    get :feed, id: @feed_pet
+    assert_redirected_to pet_path(assigns(:pet))
+    assert_operator @feed_pet.reload.hunger, :<, 1
   end
 end
