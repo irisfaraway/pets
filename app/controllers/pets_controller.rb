@@ -73,7 +73,11 @@ class PetsController < ApplicationController
     # Check how much time has passed since last fed
     time_since_last_fed = (DateTime.current.to_f - @pet.last_fed.to_f) / 6000
     # Add elapsed time to hunger
-    @pet.hunger += time_since_last_fed
+    if time_since_last_fed < 1
+      @pet.hunger += time_since_last_fed
+    else
+      @pet.hunger = 1
+    end
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
