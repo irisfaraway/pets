@@ -1,17 +1,25 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  provider: MyString
-  uid: MyString
-  name: MyString
-  image: MyString
-  token: MyString
+admin_user:
+  provider: google
+  uid: 123
+  name: Dr Doolittle
+  token: hdaklfhkshfdklahfdklhsa
   expires_at: 2016-06-25 21:18:16
+  admin: true
 
-two:
-  provider: MyString
-  uid: MyString
-  name: MyString
-  image: MyString
-  token: MyString
+normal_user_one:
+  provider: google
+  uid: 456
+  name: Hagrid
+  token: oauroisdhfkjsahfiasdhfiads
   expires_at: 2016-06-25 21:18:16
+  admin: false
+
+normal_user_two:
+  provider: google
+  uid: 789
+  name: Snow White
+  token: dfksksafhkashfkwoieureow
+  expires_at: 2016-06-25 21:18:16
+  admin: true

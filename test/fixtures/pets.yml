@@ -1,26 +1,40 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
+default_pet: &default
+  last_fed: 2016-01-01 00:00:00
+
 show_pet:
+  <<: *default
   name: Bruno
   hunger: 0
-  last_fed: 2016-01-01 00:00:00
+  user: admin_user
 
 edit_pet:
+  <<: *default
   name: Coco
   hunger: 0
-  last_fed: 2016-01-01 00:00:00
+  user: admin_user
 
 update_pet:
+  <<: *default
   name: Donny
   hunger: 0
-  last_fed: 2016-01-01 00:00:00
+  user: admin_user
 
 destroy_pet:
+  <<: *default
   name: Eggy
   hunger: 0
-  last_fed: 2016-01-01 00:00:00
+  user: admin_user
 
 feed_pet:
+  <<: *default
   name: Kiki
   hunger: 1
-  last_fed: 2016-01-01 00:00:00
+  user: admin_user
+
+normal_user_pet:
+  <<: *default
+  name: Boogie
+  hunger: 1
+  user: normal_user_two
