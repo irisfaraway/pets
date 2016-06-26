@@ -1,9 +1,19 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  name: MyString
-  image: MyString
+species_for_pets:
+  name: Cat
 
-two:
-  name: MyString
-  image: MyString
+new_species:
+  name: Unicorn
+
+show_species:
+  name: Dog
+
+edit_species:
+  name: Bird
+
+update_species:
+  name: Dolphin
+
+destroy_species:
+  name: Cockroach
