@@ -1,5 +1,5 @@
 <div class="row">
-  <%= image_tag('pets/pet.png', alt: @pet.name) %>
+  <%= image_tag(@pet.species.image_normal, alt: @pet.name) %>
 </div>
 <div class="row">
   <p>You see <strong><%= @pet.name %></strong>.</p>
@@ -31,7 +31,7 @@
       <p>Hunger is <%= @pet.hunger%></p>
       <p>Last fed at <%= @pet.last_fed%></p>
       <p>Currently <%= DateTime.current%></p>
-      <%= link_to 'Rename', edit_pet_path(@pet), class: 'button info' %>
+      <%= link_to 'Edit', edit_pet_path(@pet), class: 'button info' %>
     </div>
   </div>
 <% end %>

@@ -4,7 +4,7 @@
 <div class="row">
   <% @pets.each do |pet| %>
     <div class="small-12 medium-6 large-4 column">
-      <%= image_tag('pet.png', alt: pet.name) %>
+      <%= image_tag(pet.species.image_normal, alt: pet.name) %>
       <h2><%= pet.name %></h2>
       <p><%= link_to 'Show', pet, class: 'button tiny info' %>
       <%= link_to 'Destroy', pet, method: :delete, data: { confirm: 'Are you sure?' }, class: 'button tiny alert' %></p>
