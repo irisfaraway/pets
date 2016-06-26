@@ -1,6 +1,7 @@
 class PetsController < ApplicationController
   before_action :redirect_if_not_logged_in
-  before_action :check_pet_editing_permissions, only: [:edit, :update, :destroy, :feed]
+  before_action :check_pet_editing_permissions, only: [:destroy, :feed]
+  before_action :check_admin_editing_permissions, only: [:edit, :update]
   before_action :set_pet, only: [:show, :edit, :update, :destroy, :feed]
   before_action :update_hunger, only: [:show]
 
