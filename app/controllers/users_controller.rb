@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :redirect_if_not_logged_in
+  before_action :check_user_editing_permissions
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   # Must be logged in to do anything user-related
 
@@ -14,7 +15,6 @@ class UsersController < ApplicationController
   # GET /users/1.json
   def show
     @user = User.find(params[:id])
-    @books = @user.books
   end
 
   # GET /users/new
@@ -68,6 +68,12 @@ class UsersController < ApplicationController
   end
 
   private
+
+  def check_user_editing_permissions
+    return if current_user.admin?
+    flash[:warning] = 'Only admins can do that'
+    redirect_to(root_path)
+  end
 
   # Use callbacks to share common setup or constraints between actions.
   def set_user

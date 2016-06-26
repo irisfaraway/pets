@@ -1,6 +1,6 @@
 class PetsController < ApplicationController
   before_action :redirect_if_not_logged_in
-  before_action :check_editing_permissions, only: [:edit, :update, :destroy, :feed]
+  before_action :check_pet_editing_permissions, only: [:edit, :update, :destroy, :feed]
   before_action :set_pet, only: [:show, :edit, :update, :destroy, :feed]
   before_action :update_hunger, only: [:show]
 
@@ -84,7 +84,7 @@ class PetsController < ApplicationController
 
   private
 
-  def check_editing_permissions
+  def check_pet_editing_permissions
     set_pet
     unless @pet.user.id == current_user.id || current_user.admin?
       flash[:warning] = "That's not your pet - leave it alone!"

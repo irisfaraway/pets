@@ -1,5 +1,8 @@
 <% if logged_in? %>
   <li><%= link_to 'Pets', pets_path %></li>
+  <% if current_user.admin? %>
+    <li><%= link_to 'Users', users_path %></li>
+  <% end %>
   <li><%= link_to 'Log out', logout_path %></li>
   <% else %>
   <li><a href="/auth/google_oauth2">Log in</a></li>
