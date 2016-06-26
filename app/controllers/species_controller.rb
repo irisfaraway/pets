@@ -1,5 +1,6 @@
 class SpeciesController < ApplicationController
   before_action :set_species, only: [:show, :edit, :update, :destroy]
+  before_action :check_admin_editing_permissions
 
   # GET /species
   # GET /species.json
@@ -62,13 +63,14 @@ class SpeciesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_species
-      @species = Species.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def species_params
-      params.require(:species).permit(:name, :image)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_species
+    @species = Species.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def species_params
+    params.require(:species).permit(:name, :image)
+  end
 end
