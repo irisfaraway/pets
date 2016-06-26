@@ -1,6 +1,8 @@
-<h1>Editing User</h1>
-
+<div class="row">
+  <h1>Editing user</h1>
+</div>
 <%= render 'form' %>
-
-<%= link_to 'Show', @user %> |
-<%= link_to 'Back', users_path %>
+<div class="row">
+  <%= link_to 'Close without saving', @user, class: 'button info' %>
+  <%= link_to 'Back to all users', users_path, class: 'button info' %>
+</div>

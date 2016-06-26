@@ -29,7 +29,7 @@ ActiveRecord::Schema.define(version: 20160626154531) do
 
   create_table "species", force: :cascade do |t|
     t.string   "name"
-    t.string   "image"
+    t.string   "image_normal"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

@@ -1,33 +1,37 @@
-<%= image_tag('pets/pet.png', alt: @pet.name) %>
-
-<p>You see <strong><%= @pet.name %></strong>.</p>
-
-<p><strong><%= @pet.name %></strong> is
-  <% if @pet.hunger < 0.3 %>
-    full.
-  <% elsif @pet.hunger > 0.6 %>
-    hungry.
+<div class="row">
+  <%= image_tag('pets/pet.png', alt: @pet.name) %>
+</div>
+<div class="row">
+  <p>You see <strong><%= @pet.name %></strong>.</p>
+  <p><strong><%= @pet.name %></strong> is
+    <% if @pet.hunger < 0.3 %>
+      full.
+    <% elsif @pet.hunger > 0.6 %>
+      hungry.
+    <% else %>
+      a bit peckish.
+    <% end %>
+  </p>
+  <% if @pet.user_id == current_user.id %>
+    <p><strong><%= @pet.name %></strong> loves you.</p>
   <% else %>
-    a bit peckish.
+    <p><strong><%= @pet.name %></strong> regards you suspiciously.</p>
   <% end %>
-</p>
-
-<% if @pet.user_id == current_user.id %>
-  <p><strong><%= @pet.name %></strong> loves you.</p>
-<% else %>
-  <p><strong><%= @pet.name %></strong> regards you suspiciously.</p>
-<% end %>
-
+</div>
 <% if @pet.user_id == current_user.id || current_user.admin? %>
-  <%= link_to 'Feed pet', feed_pet_path(@pet), class: 'button success' %>
-  <%= link_to 'Rename', edit_pet_path(@pet), class: 'button' %>
-  <%= link_to 'Back', pets_path, class: 'button' %>
+  <div class="row">
+    <%= link_to 'Feed pet', feed_pet_path(@pet), class: 'button success' %>
+    <%= link_to 'Back', pets_path, class: 'button info' %>
+  </div>
 <% end %>
 <% if current_user.admin? %>
-  <div class="panel">
-    <h3>Pet data for debugging</h3>
-    <p>Hunger is <%= @pet.hunger%></p>
-    <p>Last fed at <%= @pet.last_fed%></p>
-    <p>Currently <%= DateTime.current%></p>
+  <div class="row">
+    <div class="panel">
+      <h3>Pet data for debugging</h3>
+      <p>Hunger is <%= @pet.hunger%></p>
+      <p>Last fed at <%= @pet.last_fed%></p>
+      <p>Currently <%= DateTime.current%></p>
+      <%= link_to 'Rename', edit_pet_path(@pet), class: 'button info' %>
+    </div>
   </div>
 <% end %>

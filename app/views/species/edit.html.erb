@@ -1,6 +1,8 @@
-<h1>Editing Species</h1>
-
+<div class="row">
+  <h1>Editing species</h1>
+</div>
 <%= render 'form' %>
-
-<%= link_to 'Show', @species %> |
-<%= link_to 'Back', species_index_path %>
+<div class="row">
+  <%= link_to 'Close without saving', @species, class: 'button info' %>
+  <%= link_to 'Back to all species', species_index_path, class: 'button info' %>
+</div>

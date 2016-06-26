@@ -1,25 +1,18 @@
-<h1>Listing Pets</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @pets.each do |pet| %>
-      <tr>
-        <td><%= pet.name %></td>
-        <td><%= link_to 'Show', pet %></td>
-        <td><%= link_to 'Edit', edit_pet_path(pet) %></td>
-        <td><%= link_to 'Destroy', pet, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
+<div class="row">
+  <h1>All pets</h1>
+</div>
+<div class="row">
+  <% @pets.each do |pet| %>
+    <div class="small-12 medium-6 large-4 column">
+      <%= image_tag('pet.png', alt: pet.name) %>
+      <h2><%= pet.name %></h2>
+      <p><%= link_to 'Show', pet, class: 'button tiny info' %>
+      <%= link_to 'Destroy', pet, method: :delete, data: { confirm: 'Are you sure?' }, class: 'button tiny alert' %></p>
+    </div>
+  <% end %>
+</div>
 <% if current_user.pet.nil? %>
-  <%= link_to 'New Pet', new_pet_path %>
+  <div class="row">
+    <%= link_to 'Add new pet', new_pet_path, class: 'button success' %>
+  </div>
 <% end %>
